@@ -1,0 +1,20 @@
+# Images Folder
+
+Place your visualization PNG files here:
+
+- sentiment-distribution.png
+- topic-model.png
+- word-cloud.png
+- (add your other visualizations)
+
+## Exporting from Jupyter
+
+```python
+import matplotlib.pyplot as plt
+
+# After creating your chart:
+plt.savefig('your-chart-name.png', dpi=300, bbox_inches='tight')
+plt.show()
+```
+
+Then move the PNG file to this folder.
