@@ -9,78 +9,24 @@
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
+    <!-- Dark Mode Toggle -->
+    <div class="dark-mode-toggle-container">
+        <button id="dark-mode-toggle" class="dark-mode-toggle" aria-label="Toggle dark mode">
+            🌙
+        </button>
+    </div>
+
     <!-- Navigation: Links to all portfolio pages -->
     <!--I chose to change the colors to be warm coral, because that color is my favorite-->
     <!--This section will allow visitors to click on any link to visit any section of the portfolio-->
     <nav>
         <ul>
             <li><a href="index.html">Home</a></li>
-            <li><a href="ai-evaluation.html">AI Evaluation</a></li>
-            <li><a href="tufte-critique.html">Tufte Critique</a></li>
-            <li><a href="tableau-visualization.html">Tableau Viz</a></li>
-            <li><a href="lab5.html">Lab 5</a></li>
+            <li><a href="lab02.html">AI Evaluation</a></li>
+            <li><a href="lab03.html">Tufte Critique</a></li>
+            <li><a href="lab04.html">Tableau Viz</a></li>
+            <li><a href="lab05.html">Vibe Coding</a></li>
             <li><a href="hometown-map.html">Hometown Map</a></li>
-            <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Evaluation | Your Name</title>
-    <link rel="stylesheet" href="css/styles.css">
-</head>
-<body>
-    <header>
-        <nav>
-            <a href="index.html">Home</a>
-            <a href="lab02.html" class="active">Lab 2: AI Evaluation</a>
-            <a href="lab03.html">Lab 3: Visualization Critique</a>
-            <a href="lab04.html">Lab 4: Interactive Mapping</a>
-
-            <!-- Add more lab links as the semester progresses -->
-        </nav>
-        <h1>AI Tool Evaluation</h1>
-    </header>
-
-    <main>
-        <section>
-            <h2>Introduction</h2>
-            <p>Brief intro to what you explored and why...</p>
-        </section>
-
-        <section>
-            <h2>Tool 1: [Tool Name]</h2>
-            <h3>Capabilities</h3>
-            <p>What the tool does well, where it falls short...</p>
-
-            <h3>Appropriate Use</h3>
-            <p>Good use cases vs. poor use cases...</p>
-
-            <h3>Ethical Considerations</h3>
-            <p>Concerns and how they're addressed...</p>
-
-            <!-- Add screenshots or examples -->
-            <figure>
-                <img src="images/tool1-example.png" alt="Description of screenshot">
-                <figcaption>Caption explaining what this shows</figcaption>
-            </figure>
-        </section>
-
-        <section>
-            <h2>Tool 2: [Tool Name]</h2>
-            <!-- Same structure as Tool 1 -->
-        </section>
-
-        <section>
-            <h2>Broader Reflections</h2>
-            <p>Personal use, DCDA context, evolving landscape...</p>
-        </section>
-    </main>
-
-    <footer>
-        <p>&copy; 2026 Your Name | <a href="https://github.com/yourusername/dcda-portfolio">GitHub</a></p>
-    </footer>
-</body>
-</html>
         </ul>
     </nav>
 
@@ -127,29 +73,29 @@
             <div class="portfolio-grid">
 
                 <!-- Lab 2: AI Tool Evaluation -->
-                <a href="ai-evaluation.html" class="portfolio-card">
+                <a href="lab02.html" class="portfolio-card">
                     <h3>AI Tool Evaluation</h3>
                     <span class="lab-tag">Lab 2</span>
                     <p>Analysis of AI tools and their capabilities, exploring how artificial intelligence is changing digital culture.</p>
                 </a>
 
                 <!-- Lab 3: Tufte Critique -->
-                <a href="tufte-critique.html" class="portfolio-card">
+                <a href="lab03.html" class="portfolio-card">
                     <h3>Tufte Critique</h3>
                     <span class="lab-tag">Lab 3</span>
                     <p>Critical analysis of a data visualization using Edward Tufte's principles of graphical excellence.</p>
                 </a>
 
                 <!-- Lab 4: Tableau Visualization -->
-                <a href="tableau-visualization.html" class="portfolio-card">
+                <a href="lab04.html" class="portfolio-card">
                     <h3>Tableau Visualization</h3>
                     <span class="lab-tag">Lab 4</span>
                     <p>Interactive data visualization created with Tableau Public, exploring patterns in real-world data.</p>
                 </a>
 
-                <!-- Lab 5: TBD -->
-                <a href="lab5.html" class="portfolio-card">
-                    <h3>Lab 5</h3>
+                <!-- Lab 5: Vibe Coding -->
+                <a href="lab05.html" class="portfolio-card">
+                    <h3>Vibe Coding</h3>
                     <span class="lab-tag">Lab 5</span>
                     <p>Content based on Lab 5 assignment.</p>
                 </a>
@@ -182,5 +128,23 @@
         <p><a href="https://github.com/molly-riggs/DCDA40833-portfolio-v2/deployments">View Repository on GitHub</a></p>
         <p>&copy; 2026 Molly Riggs | DCDA 40833 | TCU</p>
     </footer>
+
+    <!-- Dark Mode Toggle Script -->
+    <script>
+        const toggle = document.getElementById('dark-mode-toggle');
+
+        // Check for saved preference or default to light mode
+        if (localStorage.getItem('darkMode') === 'true') {
+            document.body.classList.add('dark-mode');
+            toggle.textContent = '☀️';
+        }
+
+        toggle.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            const isDark = document.body.classList.contains('dark-mode');
+            toggle.textContent = isDark ? '☀️' : '🌙';
+            localStorage.setItem('darkMode', isDark);
+        });
+    </script>
 </body>
 </html>
