@@ -253,6 +253,68 @@ def create_map(locations, access_token, tile_url, output_file):
 
     # Save the map
     m.save(output_file)
+
+    # Add a reflection section below the map
+    # Re-read the saved HTML, modify the layout so the map isn't full-screen,
+    # and append a reflection section below it.
+    with open(output_file, "r", encoding="utf-8") as f:
+        html_content = f.read()
+
+    # Change the body/html from 100% height to auto so content can scroll
+    html_content = html_content.replace(
+        "html, body {\n                width: 100%;\n                height: 100%;\n                margin: 0;\n                padding: 0;\n            }",
+        "html, body {\n                width: 100%;\n                height: auto;\n                margin: 0;\n                padding: 0;\n            }"
+    )
+
+    # Get the map div ID from the HTML
+    import re as re_mod
+    map_id_match = re_mod.search(r'id="(map_[a-f0-9]+)"', html_content)
+    if map_id_match:
+        map_id = map_id_match.group(1)
+        # Set the map div to a fixed height instead of 100%
+        html_content = html_content.replace(
+            f"#{map_id} {{\n                    position: relative;\n                    width: 100.0%;\n                    height: 100.0%;",
+            f"#{map_id} {{\n                    position: relative;\n                    width: 100.0%;\n                    height: 70vh;"
+        )
+
+    # Add the reflection section before closing </body>
+    reflection_section = """
+    <div style="background-color: #f9f9f9; padding: 3rem 2rem; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;">
+        <div style="max-width: 800px; margin: 0 auto;">
+            <h2 style="color: #9f1239; border-bottom: 3px solid #f43f5e; padding-bottom: 0.5rem; margin-bottom: 1.5rem; font-size: 1.875rem;">
+                Lab Reflection
+            </h2>
+
+            <h3 style="color: #333; margin-top: 1.5rem; margin-bottom: 0.75rem;">About This Map</h3>
+            <p style="color: #555; line-height: 1.8; margin-bottom: 1rem;">
+                <!-- TODO: Write about why you chose these locations and what they mean to you -->
+                [Write about why you chose Danville, CA and what these locations mean to you personally.]
+            </p>
+
+            <h3 style="color: #333; margin-top: 1.5rem; margin-bottom: 0.75rem;">Process & Challenges</h3>
+            <p style="color: #555; line-height: 1.8; margin-bottom: 1rem;">
+                <!-- TODO: Describe the technical process and any challenges -->
+                [Describe your experience creating this map — what tools you used, what was easy, what was challenging.]
+            </p>
+
+            <h3 style="color: #333; margin-top: 1.5rem; margin-bottom: 0.75rem;">What I Learned</h3>
+            <p style="color: #555; line-height: 1.8; margin-bottom: 1rem;">
+                <!-- TODO: Reflect on what you learned from this lab -->
+                [Reflect on what you learned about interactive mapping, geocoding, and web development.]
+            </p>
+        </div>
+    </div>
+
+    <footer style="background-color: #333; color: white; text-align: center; padding: 1.5rem; font-family: Arial, sans-serif;">
+        <p>&copy; 2026 Molly Riggs | DCDA 40833 | TCU</p>
+    </footer>
+"""
+
+    html_content = html_content.replace("</body>", reflection_section + "</body>")
+
+    with open(output_file, "w", encoding="utf-8") as f:
+        f.write(html_content)
+
     print(f"✅ Map saved to {output_file}")
 
 
